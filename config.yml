@@ -1,0 +1,4 @@
+consumer_key: wysebytes.com
+consumer_secret: uhH9Ua5yvfTvO9y3+Rkl8sKO
+callback_url: auth
+scope: https://spreadsheets.google.com/feeds/
