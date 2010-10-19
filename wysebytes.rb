@@ -47,7 +47,10 @@ end
 
 get "/" do
   if @access_token
-    @data = create_datastructure_from_xml(@access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body).to_s
+    
+    XmlSimple.xml_in(xml, 'KeyAttr' => 'name')
+    
+    @data = XmlSimple.xml_in(@access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body), 'KeyAttr' => 'name').to_s
     haml :index
   else
     '<a href="/request">Sign On</a>'
