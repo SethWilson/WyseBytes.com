@@ -30,12 +30,23 @@ before do
     @access_token = OAuth::AccessToken.new(@consumer, session[:oauth][:access_token], session[:oauth][:access_token_secret])
   end
   
+  if @access_token
+    # Use this access token to go get some data!
+     @data = @access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body
+      #  :type => :oauth,
+      #  :consumer_key => consumer_key,
+      #  :consumer_secret => consumer_secret,
+      #  :token => @access_token.token, 
+      #  :token_secret => @access_token.secret
+        
+    end
+  
   
 end
 
 get "/" do
   if @access_token
-    
+    @data = @access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body
     haml :index
   else
     '<a href="/request">Sign On</a>'
