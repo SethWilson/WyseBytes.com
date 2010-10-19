@@ -43,7 +43,7 @@ get "/" do
 end
 
 get "/request" do
-  @request_token = @consumer.get_request_token(:oauth_callback => "http://#{request.host}/auth", {:scope => 'https://spreadsheets.google.com/feeds/'})
+  @request_token = @consumer.get_request_token({} :oauth_callback => "http://#{request.host}/auth", :scope => 'https://spreadsheets.google.com/feeds/')
   session[:oauth][:request_token] = @request_token.token
   session[:oauth][:request_token_secret] = @request_token.secret
   redirect @request_token.authorize_url
