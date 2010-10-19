@@ -48,8 +48,6 @@ end
 get "/" do
   if @access_token
     
-    XmlSimple.xml_in(xml, 'KeyAttr' => 'name')
-    
     @data = XmlSimple.xml_in(@access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body, 'KeyAttr' => 'name').to_s
     haml :index
   else
