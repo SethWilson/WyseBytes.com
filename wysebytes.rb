@@ -4,6 +4,7 @@ require 'lib/gs'
 require 'lib/wiki_data'
 require 'oauth'
 require 'haml'
+require 'xmlsimple'
 
 
 enable :sessions
@@ -46,7 +47,7 @@ end
 
 get "/" do
   if @access_token
-    @data = @access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body
+    @data = create_datastructure_from_xml(@access_token.get("https://spreadsheets.google.com/feeds/spreadsheets/private/full?prettyprint=true").body).to_s
     haml :index
   else
     '<a href="/request">Sign On</a>'
