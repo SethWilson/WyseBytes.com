@@ -26,7 +26,7 @@
 require 'net/http'
 require 'net/https'
 require 'rubygems'
-require 'xml-simple'
+require 'xmlsimple'
 
 # Contains all the methods listed in the 
 # 'Using Ruby with the Google Data API's article'.
