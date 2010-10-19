@@ -1,2 +1,2 @@
-require 'first'
+require 'wysebytes'
 run Sinatra::Application
